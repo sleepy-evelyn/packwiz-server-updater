@@ -1,6 +1,6 @@
 # Packwiz server updater
 
-Updates packwiz modpacks for a server using simple commands.
+Loads in and updates packwiz modpacks for a server using simple commands.
 
 [![modrinth badge](https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/packwiz-server-updater)
 
