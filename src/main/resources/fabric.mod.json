@@ -3,7 +3,7 @@
   "id": "packwizsu",
   "version": "${version}",
 
-  "name": "Packwiz Server Updater",
+  "name": "Packwiz Updater",
   "description": "Updates packwiz using commands",
   "authors": [
     "Sleepy Evelyn"
@@ -24,7 +24,7 @@
   },
   "depends": {
     "fabricloader": ">=0.16.0",
-    "minecraft": ">=19"
+    "minecraft": ">=1.19"
   },
   "mixins": [
     "packwizsu.mixins.json"
