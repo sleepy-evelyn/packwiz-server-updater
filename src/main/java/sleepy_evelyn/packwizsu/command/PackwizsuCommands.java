@@ -86,7 +86,7 @@ public final class PackwizsuCommands {
             throw new SimpleCommandExceptionType(Text.literal(ptue.getMessage())).create();
         } catch (Exception e) {
             e.printStackTrace();
-            throw sleepy_evelyn.packwizsu.command.CommandExceptions.FILE_UPDATE_FAILED.create();
+            throw CommandExceptions.FILE_UPDATE_FAILED.create();
         }
     }
 
