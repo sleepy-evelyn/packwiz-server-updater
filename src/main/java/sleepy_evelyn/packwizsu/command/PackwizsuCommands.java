@@ -269,6 +269,6 @@ public final class PackwizsuCommands {
 
     private static CommandOutput getCommandOutput(CommandContext<ServerCommandSource> ctx) {
         return (ctx.getSource().getEntity() instanceof ServerPlayerEntity player)
-                ? player.getCommandOutput() : ctx.getSource().getServer();
+                ? player : ctx.getSource().getServer();
     }
 }
