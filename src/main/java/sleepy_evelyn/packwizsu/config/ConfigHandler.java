@@ -4,12 +4,13 @@ import java.util.Properties;
 
 public class ConfigHandler {
     private static final String HEADER = "Packwiz serverside updater";
-    private final sleepy_evelyn.packwizsu.config.ConfigFile configFile;
+    private final ConfigFile configFile;
 
     public ConfigHandler() {
         var defaultProperties = new Properties();
         defaultProperties.setProperty("pack_toml", "");
-        configFile = new sleepy_evelyn.packwizsu.config.ConfigFile("packwiz-server-updater", defaultProperties, HEADER);
+        defaultProperties.setProperty("minimum_permission_level", "4");
+        configFile = new ConfigFile("packwiz-server-updater", defaultProperties, HEADER);
     }
 
     public synchronized void setValue(String key, String value) {

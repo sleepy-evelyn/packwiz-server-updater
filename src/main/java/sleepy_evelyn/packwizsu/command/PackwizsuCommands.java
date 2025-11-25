@@ -41,19 +41,27 @@ public final class PackwizsuCommands {
 
     private static final MutableText UPDATE_START = Text.literal("Updating modpack. This may take a while...").formatted(Formatting.GRAY);
     private static final MutableText UPDATE_START_NO_BOOTSTRAP = Text.literal("Downloading the Packwiz Bootstrap and updating the modpack. This may take a while...").formatted(Formatting.GRAY);
-    private static final MutableText UPDATE_FINISHED = Text.literal("Packwiz has finished updating. Restart the server for changes to take effect.").formatted(Formatting.GREEN);
+    private static final MutableText UPDATE_FINISHED = Text.literal("Packwiz has finished updating. Restart for changes to take effect.").formatted(Formatting.GREEN);
     private static final MutableText BOOTSTRAP_DOWNLOAD_FINISHED = Text.literal("Bootstrap downloaded successfully.");
     private static final MutableText UPDATED_TOML_LINK = Text.literal("Successfully linked a Packwiz modpack. Use /packwiz update for the changes to take effect.").formatted(Formatting.GREEN);
-    private static final MutableText COMMAND_FAILED = Text.literal("Command failed. Check the server console for errors.").formatted(Formatting.RED);
-    private static final MutableText PROCESS_INTERRUPTED = Text.literal("Process was interrupted. Check the server console for details.").formatted(Formatting.RED);
-    private static final MutableText FILE_HANDLING_ERROR = Text.literal("Read/write process failed. Check the server console for details.").formatted(Formatting.RED);
+    private static final MutableText COMMAND_FAILED = Text.literal("Command failed. Check the console for errors.").formatted(Formatting.RED);
+    private static final MutableText PROCESS_INTERRUPTED = Text.literal("Process was interrupted. Check the console for details.").formatted(Formatting.RED);
+    private static final MutableText FILE_HANDLING_ERROR = Text.literal("Read/write process failed. Check the console for details.").formatted(Formatting.RED);
 
-    private static final Set<String> PACK_TOML_REQUIRED_KEYS = Set.of( "name", "author", "version", "index");
+    private static final Set<String> PACK_TOML_REQUIRED_KEYS = Set.of( "name", "version", "index");
 
     private static final LinkedList<AsyncCommandTask> TASKS = new LinkedList<>();
     private static final Predicate<String> HAS_TASK = name -> TASKS.stream().anyMatch((task) -> task.hasName(name));
 
+    private static int _minPermissionLevel = 4;
+
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+        String minPermissionLevel = getConfigHandler().getValue("minimum_permission_level");
+        if (minPermissionLevel == null)
+            LOGGER.warn("Failed to read minimum permission level from config. Defaulting to 4 (Operator).");
+        else
+            _minPermissionLevel = Integer.parseInt(minPermissionLevel);
+
         dispatcher.register(literal("packwiz")
                 .then(literal("link")
                         .then(argument("url", StringArgumentType.greedyString())
@@ -63,7 +71,7 @@ public final class PackwizsuCommands {
                 .then(literal("update")
                         .executes(PackwizsuCommands::restartAndUpdate)
                 )
-                .requires(source -> source.hasPermissionLevel(4))
+                .requires(source -> source.hasPermissionLevel(_minPermissionLevel))
         );
     }
 
@@ -261,6 +269,6 @@ public final class PackwizsuCommands {
 
     private static CommandOutput getCommandOutput(CommandContext<ServerCommandSource> ctx) {
         return (ctx.getSource().getEntity() instanceof ServerPlayerEntity player)
-                ? player : ctx.getSource().getServer();
+                ? player.getCommandOutput() : ctx.getSource().getServer();
     }
 }

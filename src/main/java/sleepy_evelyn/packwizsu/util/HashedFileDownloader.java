@@ -1,6 +1,5 @@
 package sleepy_evelyn.packwizsu.util;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
