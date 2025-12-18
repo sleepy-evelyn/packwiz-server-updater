@@ -20,6 +20,7 @@ import sleepy_evelyn.packwizsu.util.TickCounter;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.LinkedList;
@@ -85,7 +86,7 @@ public final class PackwizsuCommands {
         } catch (PackTomlURLException ptue) {
             throw new SimpleCommandExceptionType(Text.literal(ptue.getMessage())).create();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("Failed to update the packwiz-server-updater.properties file within the root directory", e);
             throw CommandExceptions.FILE_UPDATE_FAILED.create();
         }
     }
@@ -156,7 +157,7 @@ public final class PackwizsuCommands {
 
     private static @NotNull URL testPackTomlLink(@NotNull final String packTomllink) throws PackTomlURLException {
         try {
-            var url = new URL(packTomllink);
+            var url = URI.create(packTomllink).toURL();
             var connection = url.openConnection();
             var toml = new Toml().read(connection.getInputStream());
 
@@ -211,7 +212,8 @@ public final class PackwizsuCommands {
                     if (message == null) message = COMMAND_FAILED;
                 }
                 task.sendMessage(message);
-                if (exception != null) exception.printStackTrace();
+                if (exception != null)
+                    LOGGER.error("Unexpected exception occurred whilst polling Packwiz command status", exception);
                 tasksIterator.remove();
             }
         }
@@ -233,11 +235,11 @@ public final class PackwizsuCommands {
         public void tick() { tc.increment(); }
 
         public boolean pollFinished() {
-            return (tc.test() && future != null && future.isDone());
+            return (tc.test() && future.isDone());
         }
 
         public void sendMessage(Text message) {
-            if (message != null && co != null)
+            if (future.isDone())
                 co.sendMessage(message);
         }
 

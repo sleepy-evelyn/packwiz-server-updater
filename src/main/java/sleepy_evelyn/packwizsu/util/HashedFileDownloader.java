@@ -11,30 +11,21 @@ import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class HashedFileDownloader {
-
-    private final Path destination;
-    private final String url;
-    private final String sha256Hash;
-
-    public HashedFileDownloader(String url, String sha256Hash, Path destination) {
-        this.url = url;
-        this.sha256Hash = sha256Hash;
-        this.destination = destination;
-    }
+public record HashedFileDownloader(String url, String sha256Hash, Path destination) {
 
     public void download() throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newBuilder()
+        try (var client = HttpClient.newBuilder()
                 .followRedirects(HttpClient.Redirect.ALWAYS)
-                .build();
+                .build()
+        ) {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .build();
+            HttpResponse<Path> response = client.send(request, HttpResponse.BodyHandlers.ofFile(destination));
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .build();
-        HttpResponse<Path> response = client.send(request, HttpResponse.BodyHandlers.ofFile(destination));
-
-        if (response.statusCode() != 200)
-            throw new IOException("Failed to download file. HTTP Response code: " + response.statusCode());
+            if (response.statusCode() != 200)
+                throw new IOException("Failed to download file. HTTP Response code: " + response.statusCode());
+        }
     }
 
     public boolean hashesMatch() throws NoSuchAlgorithmException, IOException {
@@ -53,9 +44,7 @@ public class HashedFileDownloader {
             // Convert from signed to unsigned
             String hex = Integer.toHexString(0xff & b);
             // Handle single characters
-            if (hex.length() == 1) {
-                hexString.append('0');
-            }
+            if (hex.length() == 1) hexString.append('0');
             // Add the string value
             hexString.append(hex);
         }
