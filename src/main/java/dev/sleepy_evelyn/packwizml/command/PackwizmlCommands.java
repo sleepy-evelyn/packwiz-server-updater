@@ -165,7 +165,7 @@ public final class PackwizmlCommands {
 
     private static CommandOutput getCommandOutput(CommandContext<ServerCommandSource> ctx) {
         return (ctx.getSource().getEntity() instanceof ServerPlayerEntity player)
-                ? player : ctx.getSource().getServer();
+                ? player.getCommandOutput() : ctx.getSource().getServer();
     }
 
     public static class AsyncCommandTask {
