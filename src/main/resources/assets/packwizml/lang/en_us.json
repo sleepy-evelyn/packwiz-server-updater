@@ -1,0 +1,13 @@
+{
+  "itemGroup.packwizml": "Example Mod Tab",
+  "block.packwizml.example_block": "Example Block",
+  "item.packwizml.example_item": "Example Item",
+
+  "packwizml.configuration.title": "Packwiz Modpack Loader Configs",
+  "packwizml.configuration.section.packwizml.common.toml": "Packwiz Modpack Loader Configs",
+  "packwizml.configuration.section.packwizml.common.toml.title": "Packwiz Modpack Loader Configs",
+  "packwizml.configuration.items": "Item List",
+  "packwizml.configuration.logDirtBlock": "Log Dirt Block",
+  "packwizml.configuration.magicNumberIntroduction": "Magic Number Text",
+  "packwizml.configuration.magicNumber": "Magic Number"
+}
