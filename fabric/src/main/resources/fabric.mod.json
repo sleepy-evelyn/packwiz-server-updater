@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "packwizml",
+  "version": "${version}",
+  "name": "Packwiz Modpack Loader",
+  "description": "Loads in and (auto) updates Packwiz Modpacks.",
+  "authors": [
+    "Sleepy Evelyn"
+  ],
+  "contact": {
+    "sources": "https://github.com/sleepy-evelyn/packwiz-server-updater",
+    "issues": "https://github.com/sleepy-evelyn/packwiz-server-updater/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/packwizml/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "dev.sleepy_evelyn.packwizml.fabric.client.PackwizmlFabricClient"
+    ],
+    "main": [
+      "dev.sleepy_evelyn.packwizml.fabric.PackwizmlFabric"
+    ]
+  },
+  "mixins": [
+    "packwizml.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.3",
+    "minecraft": "~1.21.1",
+    "java": ">=21"
+  }
+}

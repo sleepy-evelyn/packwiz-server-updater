@@ -1,0 +1,30 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+#issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "packwizml"
+version = "${version}"
+displayName = "Packwiz Modpack Loader"
+authors = "Sleepy Evelyn"
+description = '''
+Loads in and updates Packwiz Modpacks for servers and clients.
+'''
+
+[[dependencies.packwizml]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.packwizml]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "packwizml.mixins.json"
