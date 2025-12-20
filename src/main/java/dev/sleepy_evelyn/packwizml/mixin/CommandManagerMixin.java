@@ -1,4 +1,4 @@
-package sleepy_evelyn.packwizsu.mixin;
+package dev.sleepy_evelyn.packwizml.mixin;
 
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandRegistryAccess;
@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import sleepy_evelyn.packwizsu.command.PackwizsuCommands;
+import dev.sleepy_evelyn.packwizml.command.PackwizmlCommands;
 
 @Mixin(CommandManager.class)
 public abstract class CommandManagerMixin {
@@ -19,6 +19,6 @@ public abstract class CommandManagerMixin {
 
     @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/brigadier/CommandDispatcher;setConsumer(Lcom/mojang/brigadier/ResultConsumer;)V", remap = false), method = "<init>")
     private void addCommands(CommandManager.RegistrationEnvironment environment, CommandRegistryAccess registryAccess, CallbackInfo ci) {
-        PackwizsuCommands.register(this.dispatcher);
+        PackwizmlCommands.register(this.dispatcher);
     }
 }

@@ -1,11 +1,11 @@
-package sleepy_evelyn.packwizsu.mixin;
+package dev.sleepy_evelyn.packwizml.mixin;
 
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import sleepy_evelyn.packwizsu.command.PackwizsuCommands;
+import dev.sleepy_evelyn.packwizml.command.PackwizmlCommands;
 
 import java.util.function.BooleanSupplier;
 
@@ -14,6 +14,6 @@ public abstract class MinecraftServerMixin {
 
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;tickWorlds(Ljava/util/function/BooleanSupplier;)V"), method = "tick")
     private void onStartTick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
-        PackwizsuCommands.pollCommandStatus();
+        PackwizmlCommands.pollCommandStatus();
     }
 }

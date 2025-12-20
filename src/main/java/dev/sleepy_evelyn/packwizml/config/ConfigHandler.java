@@ -1,4 +1,4 @@
-package sleepy_evelyn.packwizsu.config;
+package dev.sleepy_evelyn.packwizml.config;
 
 import java.util.Properties;
 
@@ -10,6 +10,7 @@ public class ConfigHandler {
         var defaultProperties = new Properties();
         defaultProperties.setProperty("pack_toml", "");
         defaultProperties.setProperty("minimum_permission_level", "4");
+
         configFile = new ConfigFile("packwiz-server-updater", defaultProperties, HEADER);
     }
 

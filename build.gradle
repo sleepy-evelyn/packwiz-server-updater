@@ -17,7 +17,7 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"packwizsu" {
+		"packwizml" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}

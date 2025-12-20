@@ -1,12 +1,12 @@
-package sleepy_evelyn.packwizsu.config;
+package dev.sleepy_evelyn.packwizml.config;
 
-import sleepy_evelyn.packwizsu.Packwizsu;
+import dev.sleepy_evelyn.packwizml.Packwizml;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.util.Properties;
 
-import static sleepy_evelyn.packwizsu.Packwizsu.GAME_DIR_FILE;
+import static dev.sleepy_evelyn.packwizml.Packwizml.GAME_DIR_FILE;
 
 public class ConfigFile {
 
@@ -19,7 +19,7 @@ public class ConfigFile {
         this.defaults = defaults;
         this.headerComments = headerComments;
 
-        this.file = new File(Packwizsu.GAME_DIR_FILE + "/" + title + ".properties");
+        this.file = new File(Packwizml.GAME_DIR_FILE + "/" + title + ".properties");
         try {
             if(Files.notExists(GAME_DIR_FILE.toPath())) { // Create the main config directory if it doesn't exist
                 Files.createDirectory(GAME_DIR_FILE.toPath());
@@ -30,7 +30,7 @@ public class ConfigFile {
             }
             load();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize config file " + title + ".properties", e);
         }
     }
 
@@ -56,8 +56,6 @@ public class ConfigFile {
     }
 
     void setPropertyValue(String key, String value) { properties.setProperty(key, value); }
-
-    void removePropertyValue(String key) { properties.remove(key); }
 
     String getPropertyValue(String key) { return properties.getProperty(key); }
 }

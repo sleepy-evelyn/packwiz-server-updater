@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "packwizsu",
+  "id": "packwizml",
   "version": "${version}",
 
-  "name": "Packwiz Updater",
+  "name": "Packwiz Modpack Loader",
   "description": "Updates packwiz using commands",
   "authors": [
     "Sleepy Evelyn"
@@ -14,12 +14,12 @@
   },
 
   "license": "MIT",
-  "icon": "assets/packwizsu/icon.png",
+  "icon": "assets/packwizml/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "sleepy_evelyn.packwizsu.Packwizsu"
+      "dev.sleepy_evelyn.packwizml.Packwizml"
     ]
   },
   "depends": {
@@ -27,6 +27,6 @@
     "minecraft": ">=1.19"
   },
   "mixins": [
-    "packwizsu.mixins.json"
+    "packwizml.mixins.json"
   ]
 }

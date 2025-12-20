@@ -1,4 +1,4 @@
-package sleepy_evelyn.packwizsu.util;
+package dev.sleepy_evelyn.packwizml.util;
 
 public class TickCounter {
 
@@ -32,8 +32,4 @@ public class TickCounter {
     public void reset() {
         counter = 0;
     }
-
-    public int value() { return this.counter; }
-
-    public int getTickThreshold() { return this.tickThreshold; }
 }
