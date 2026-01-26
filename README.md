@@ -2,7 +2,8 @@
 
 Loads in and (auto) updates Packwiz Modpacks.
 
-[![modrinth badge](https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/packwiz-server-updater)
+[![Modrinth Badge](https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/packwiz-server-updater)
+[![KoFi Badge](https://raw.githubusercontent.com/intergrav/devins-badges/7f68fe7afdbda525557fb41097594d2edccfda03/assets/cozy/donate/kofi-singular_vector.svg)](https://ko-fi.com/sleepyevelyn)
 
 ## Usage
 - Make a [Packwiz modpack](https://packwiz.infra.link/)
