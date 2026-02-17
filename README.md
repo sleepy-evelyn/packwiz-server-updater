@@ -1,3 +1,5 @@
+### Project has moved to [git.gay/Sleepy_Evelyn/packwiz-modpack-loader](https://git.gay/Sleepy_Evelyn/packwiz-modpack-loader)
+
 # Packwiz updater
 
 Loads in and (auto) updates Packwiz Modpacks.
