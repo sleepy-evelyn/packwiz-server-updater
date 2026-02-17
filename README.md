@@ -1,3 +1,5 @@
+### Project has moved to [git.gay/Sleepy_Evelyn/packwiz-modpack-loader](https://git.gay/Sleepy_Evelyn/packwiz-modpack-loader)
+
 # Packwiz updater
 
 Updates packwiz modpacks using simple in-game commands.
